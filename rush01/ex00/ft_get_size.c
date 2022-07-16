@@ -6,9 +6,13 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:42:33 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/16 17:20:21 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/16 23:32:30 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_rush.h"
+
+#include <stdio.h>
 
 int	ft_get_size(char *str)
 {
@@ -19,12 +23,14 @@ int	ft_get_size(char *str)
 	size = 0;
 	while (str[i])
 	{
-		if (!(str[i] >= '1' && str[i] <= '4'))
+		if (!(str[i] >= '1' && str[i] <= '9'))
 			return (0);
 		size++;
-		if (str[i + 1] && !(str[i + 1] == ' '))
+		if (str[i + 1] && str[i + 1] != ' ')
 			return (0);
-		i += 2;
+		if (str[i + 1])
+			i++;
+		i++;
 	}
 	if (size % 4 == 0)
 		if (ft_is_valid_input(str, size))
@@ -34,19 +40,24 @@ int	ft_get_size(char *str)
 
 int	ft_is_valid_input(char *str, int size)
 {
-	char	p[4];
 	int		i;
+	char	col_up;
+	char	col_down;
+	char	row_left;
+	char	row_right;
 
 	i = 0;
 	while (i < size / 4)
 	{
-		p[0] = args[0 * size / 2 + i * 2];
-    	p[1] = args[1 * size / 2 + i * 2];
-		if (!(p[0] + p[1] > '0' + (size / 4 + 1) && p[0] + p[1] >= '3'))
+		col_up = ft_get_col(str, size, i, 1);
+		col_down = ft_get_col(str, size, i, 0);
+		row_left = ft_get_row(str, size, i, 1);
+		row_right = ft_get_row(str, size, i, 0);	
+		if (col_up + col_down - '0'> '1' + size / 4
+			|| col_up + col_down - '0' < '3')
 			return (0);
-    	p[2] = args[2 * size / 2 + i * 2];
-    	p[3] = args[3 * size / 2 + i * 2];
-		if (!(p[2] + p[3] > '0' + (size / 4 + 1) && p[0] + p[1] >= '3'))
+		if (row_left + row_right - '0'> '1' + size / 4
+			|| row_left + row_right - '0'< '3')
 			return (0);
 		i++;
 	}

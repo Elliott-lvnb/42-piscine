@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_clue.c                                      :+:      :+:    :+:   */
+/*   ft_io.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 17:54:55 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/16 23:04:45 by eloevenb         ###   ########.fr       */
+/*   Created: 2022/07/16 23:12:55 by eloevenb          #+#    #+#             */
+/*   Updated: 2022/07/16 23:13:59 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "ft_rush.h"
 
-int	ft_get_col(char *str, int size, int x, int up)
+void	ft_putchar(char c)
 {
-	if (up)
-		return (str[2 * x]);
-	return (str[size / 2 + 2 * x]);
+	write(1, &c, 1);
 }
 
-int	ft_get_row(char *str, int size, int y, int left)
+void	ft_putstr(char *str)
 {
-	if (left)
-		return (str[size + 2 * y]);
-	return (str[3 * size / 2 + 2 * y]);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	write(1, str, i);
 }

@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_solve_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 16:18:44 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/16 16:22:10 by eloevenb         ###   ########.fr       */
+/*   Created: 2022/07/16 23:06:22 by eloevenb          #+#    #+#             */
+/*   Updated: 2022/07/17 00:10:06 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define "ft_rush.h"
+#include "ft_rush.h"
 
 int	ft_is_valid(char **values, char *args, t_coords coords, char c)
 {
@@ -24,10 +26,15 @@ int	ft_is_valid(char **values, char *args, t_coords coords, char c)
 			return (0);
 		i++;
 	}
+	if (ft_cmpt_col(values, size, coords.x, 1) > ft_get_col(args, size, coords.x, 1) || (coords.y + 1 == size / 4
+		&& ft_cmpt_col(values, size, coords.x, 0) != ft_get_col(args, size, coords.x, 0))
+		|| ft_cmpt_row(values, size, coords.y, 1) > ft_get_row(args, size, coords.y, 1)	|| (coords.x + 1 == size / 4
+		&& ft_cmpt_row(values, size, coords.y, 0) != ft_get_row(args, size, coords.y, 0)))
+		return (0);
 	return (1);
 }
 
-char	ft_compute_col(char **values, int size, int x, int up)
+char	ft_cmpt_col(char **values, int size, int x, int up)
 {
 	char	i;
 	int		y;
@@ -54,7 +61,7 @@ char	ft_compute_col(char **values, int size, int x, int up)
 	return ('0' + i);
 }
 
-char	ft_compute_row(char **values, int size, int y, int left)
+char	ft_cmpt_row(char **values, int size, int y, int left)
 {
 	char	i;
 	int		x;
@@ -81,22 +88,29 @@ char	ft_compute_row(char **values, int size, int y, int left)
 	return (i + '0');
 }
 
-int	ft_is_final(char **values, char *args, int size)
+int	ft_solve(char **values, char *args, int n, int size)
 {
-	int	i;
+	char	c;
+	int		x;
+	int		y;
 
-	i = 0;
-	while (i < size / 4)
+	c = '0';
+	x = n % (size / 4);
+	y = n / (size / 4);
+	if (n == size * size / 16)
+		return (1);
+	if (values[y][x] != '0')
+		return (ft_solve(values, args, n + 1, size));
+	while (++c <= '0' + size / 4)
 	{
-		if (ft_compute_row(values, size, i, 1) != ft_get_row(args, size, i, 1))
-			return (0);
-		if (ft_compute_row(values, size, i, 0) != ft_get_row(args, size, i, 0))
-			return (0);
-		if (ft_compute_col(values, size, i, 1) != ft_get_col(args, size, i, 1))
-			return (0);
-		if (ft_compute_col(values, size, i, 0) != ft_get_col(args, size, i, 0))
-			return (0);
-		i++;
+		values[y][x] = c;
+		if (ft_is_valid(values, args, (t_coords){x, y}, c))
+		{
+			if (ft_solve(values, args, n + 1, size))
+				return (1);
+			values[y][x] = '0';
+		}
 	}
-	return (1);
+	values[y][x] = '0';
+	return (0);
 }

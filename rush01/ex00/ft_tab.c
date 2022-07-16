@@ -6,7 +6,7 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:39:04 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/16 18:15:12 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/16 23:17:12 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "ft_rush.h"
 
-char	**init_tab(int size)
+char	**ft_init_tab(int size)
 {
 	int		i;
 	int		j;
@@ -62,7 +62,7 @@ void	ft_destroy_tab(char **values, int size)
 	int		i;
 
 	i = 0;
-	while (i < size \ 4)
+	while (i < size / 4)
 	{
 		free(values[i]);
 		i++;
@@ -79,16 +79,16 @@ void	ft_fill_col(char **values, char *args, int size)
 	while (x < size / 4)
 	{
 		y = 0;
-		if (ft_col(args, size, x, 1) == '0' + size \ 4)
+		if (ft_get_col(args, size, x, 1) == '0' + size / 4)
 			while (y++ < size / 4)
 				values[y - 1][x] = '0' + y;
-		else if (ft_col(args, size, x, 1) == '1')
+		else if (ft_get_col(args, size, x, 1) == '1')
 			values[0][x] = '0' + size / 4;
 		y = size / 4 - 1;
-		if (ft_col(args, size, x, 0) == '0' + size \ 4)
+		if (ft_get_col(args, size, x, 0) == '0' + size / 4)
             while (y-- < size / 4)
                 values[y + 1][x] = '0' + y;
-        else if (ft_col(args, size, x, 0) == '1')
+        else if (ft_get_col(args, size, x, 0) == '1')
             values[y][x] = '0' + size / 4;
 		x++;
 	}
@@ -103,16 +103,16 @@ void	ft_fill_row(char **values, char *args, int size)
 	while (y < size / 4)
 	{
 		x = 0;
-		if (ft_row(args, size, y, 1) == '0' + size \ 4)
+		if (ft_get_row(args, size, y, 1) == '0' + size / 4)
 			while (x++ < size / 4)
 				values[y][x - 1] = '0' + x;
-		else if (ft_row(args, size, y, 1) == '1')
+		else if (ft_get_row(args, size, y, 1) == '1')
 			values[y][0] = '0' + size / 4;
 		x = size / 4 - 1;
-		if (ft_row(args, size, y, 0) == '0' + size \ 4)
+		if (ft_get_row(args, size, y, 0) == '0' + size / 4)
             while (x-- < size / 4)
                 values[y][x + 1] = '0' + x;
-        else if (ft_row(args, size, y, 0) == '1')
+        else if (ft_get_row(args, size, y, 0) == '1')
             values[y][x] = '0' + size / 4;
 		y++;
 	}
