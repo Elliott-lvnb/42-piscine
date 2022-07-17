@@ -6,7 +6,7 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:39:04 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 14:30:15 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:57:19 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ char	**ft_init_tab(int size)
 	int		i;
 	int		j;
 	char	**values;
+	int		len;
 
 	i = 0;
-	values = (char **) malloc(size / 4 * sizeof(char *));
-	while (i < size / 4)
+	len = size / 4;
+	values = (char **) malloc(len * sizeof(char *));
+	while (i < len)
 	{
-		values[i] = (char *) malloc(size / 4 * sizeof(char));
+		values[i] = (char *) malloc(len * sizeof(char));
 		j = 0;
-		while (j < size / 4)
+		while (j < len)
 		{
 			values[i][j] = '0';
 			j++;
@@ -45,9 +47,11 @@ char	**ft_init_tab(int size)
 void	ft_destroy_tab(char **values, int size)
 {
 	int		i;
+	int		len;
 
+	len = size / 4;
 	i = 0;
-	while (i < size / 4)
+	while (i < len)
 	{
 		free(values[i]);
 		i++;

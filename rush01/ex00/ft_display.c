@@ -6,7 +6,7 @@
 /*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 23:12:55 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 13:43:30 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:53:50 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ void	ft_put_tab(char **values, int size)
 {
 	int		i;
 	int		j;
+	int		len;
 
 	i = 0;
-	while (i < size / 4)
+	len = size / 4;
+	while (i < len)
 	{
 		j = 0;
-		while (j < size / 4 - 1)
+		while (j < len - 1)
 		{
 			ft_putchar(values[i][j]);
 			ft_putchar(' ');
