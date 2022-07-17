@@ -6,12 +6,23 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:15:30 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 13:21:21 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:52:14 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rush.h"
 
+/*
+	Erreurs : afficher Error\n
+		- argc != 2
+		- size <= 0(nombre d'indices) 
+		- tableau mal alloue
+		- pas de solution trouvee par ft_solve
+	Tout d'abord, on alloue la memoire pour initialiser le tableau
+	Ensuite, on remplit les lignes et les colonnes evidentes
+	Apres, on resoud le tableau avec ft_solve
+	Enfin, on affiche le tableau puis on libere la memoire
+*/
 int	main(int argc, char *argv[])
 {
 	int		size;

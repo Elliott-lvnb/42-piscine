@@ -6,12 +6,17 @@
 /*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 23:06:22 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 13:08:04 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:46:28 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rush.h"
 
+/*
+	Renvoie 1 si le caractere c, place aux coordonnees
+	co respecte bien les regles du jeu et satisfait
+	les indices (colx_up, ..., rowy_left)
+*/
 int	ft_is_valid(char **values, char *args, t_coords co, char c)
 {
 	int		i;
@@ -39,6 +44,10 @@ int	ft_is_valid(char **values, char *args, t_coords co, char c)
 	return (1);
 }
 
+/*
+	Resoud le tableau avec le backtracking, renvoie 1
+	si une solution a ete trouvee et 0 sinon.
+*/
 int	ft_solve(char **values, char *args, int n, int size)
 {
 	char	c;

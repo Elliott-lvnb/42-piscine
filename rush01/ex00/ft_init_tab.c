@@ -6,7 +6,7 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:39:04 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 13:14:18 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:45:32 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 #include "ft_rush.h"
 
+/*
+	Initialise le tableau de taille (size / 4) * (size / 4)
+*/
 char	**ft_init_tab(int size)
 {
 	int		i;
@@ -36,6 +39,9 @@ char	**ft_init_tab(int size)
 	return (values);
 }
 
+/*
+	Detruit le tableau de taille (size / 4) * (size / 4)
+*/
 void	ft_destroy_tab(char **values, int size)
 {
 	int		i;
@@ -49,6 +55,11 @@ void	ft_destroy_tab(char **values, int size)
 	free(values);
 }
 
+/*
+	Pour tous les colx_up et colx_down qui valent (size / 4),
+	Cette fonction remplit les colonnes correspondantes avec
+	1, 2, 3, ..., size / 4 ou size / 4, ..., 3, 2, 1
+*/
 void	ft_fill_col(char **values, char *args, int size)
 {
 	int		x;
@@ -75,6 +86,11 @@ void	ft_fill_col(char **values, char *args, int size)
 	}
 }
 
+/*
+	Pour tous les rowy_left et rowy_right qui valent (size / 4),
+	Cette fonction remplit les lignes correspondantes avec
+	1, 2, 3, ..., size / 4 ou size / 4, ..., 3, 2, 1
+*/
 void	ft_fill_row(char **values, char *args, int size)
 {
 	int		y;
