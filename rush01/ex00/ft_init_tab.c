@@ -6,7 +6,7 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:39:04 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 17:57:19 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 18:27:20 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	**ft_init_tab(int size)
 	while (i < len)
 	{
 		values[i] = (char *) malloc(len * sizeof(char));
+		if (!values[i])
+			return (0);
 		j = 0;
 		while (j < len)
 		{
