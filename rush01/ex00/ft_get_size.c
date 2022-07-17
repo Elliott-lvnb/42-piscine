@@ -6,13 +6,11 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:42:33 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/16 23:32:30 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:10:36 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rush.h"
-
-#include <stdio.h>
 
 int	ft_get_size(char *str)
 {
@@ -49,15 +47,15 @@ int	ft_is_valid_input(char *str, int size)
 	i = 0;
 	while (i < size / 4)
 	{
-		col_up = ft_get_col(str, size, i, 1);
-		col_down = ft_get_col(str, size, i, 0);
-		row_left = ft_get_row(str, size, i, 1);
-		row_right = ft_get_row(str, size, i, 0);	
-		if (col_up + col_down - '0'> '1' + size / 4
+		col_up = ft_col(str, size, i, 1);
+		col_down = ft_col(str, size, i, 0);
+		row_left = ft_row(str, size, i, 1);
+		row_right = ft_row(str, size, i, 0);
+		if (col_up + col_down - '0' > '1' + size / 4
 			|| col_up + col_down - '0' < '3')
 			return (0);
-		if (row_left + row_right - '0'> '1' + size / 4
-			|| row_left + row_right - '0'< '3')
+		if (row_left + row_right - '0' > '1' + size / 4
+			|| row_left + row_right - '0' < '3')
 			return (0);
 		i++;
 	}

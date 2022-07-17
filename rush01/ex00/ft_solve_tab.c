@@ -6,86 +6,37 @@
 /*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 23:06:22 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 00:10:06 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:08:04 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rush.h"
 
-int	ft_is_valid(char **values, char *args, t_coords coords, char c)
+int	ft_is_valid(char **values, char *args, t_coords co, char c)
 {
 	int		i;
-	int		size;
+	int		len;
+	int		clue[4];
 
 	i = 0;
-	size = ft_get_size(args);
-	while (i < size / 4)
+	len = ft_get_size(args) / 4;
+	while (i < len)
 	{
-		if ((values[i][coords.x] == c && i != coords.y)
-			 || (i != coords.x && values[coords.y][i] == c))
+		if ((values[i][co.x] == c && i != co.y)
+			|| (i != co.x && values[co.y][i] == c))
 			return (0);
 		i++;
 	}
-	if (ft_cmpt_col(values, size, coords.x, 1) > ft_get_col(args, size, coords.x, 1) || (coords.y + 1 == size / 4
-		&& ft_cmpt_col(values, size, coords.x, 0) != ft_get_col(args, size, coords.x, 0))
-		|| ft_cmpt_row(values, size, coords.y, 1) > ft_get_row(args, size, coords.y, 1)	|| (coords.x + 1 == size / 4
-		&& ft_cmpt_row(values, size, coords.y, 0) != ft_get_row(args, size, coords.y, 0)))
+	clue[0] = ft_col(args, len * 4, co.x, 1);
+	clue[1] = ft_col(args, len * 4, co.x, 0);
+	clue[2] = ft_row(args, len * 4, co.y, 1);
+	clue[3] = ft_row(args, len * 4, co.y, 0);
+	if (ft_get_col(values, len * 4, co.x, 1) > clue[0]
+		|| (co.y + 1 == len && ft_get_col(values, len * 4, co.x, 0) != clue[1])
+		|| ft_get_row(values, len * 4, co.y, 1) > clue[2]
+		|| (co.x + 1 == len && ft_get_row(values, len * 4, co.y, 0) != clue[3]))
 		return (0);
 	return (1);
-}
-
-char	ft_cmpt_col(char **values, int size, int x, int up)
-{
-	char	i;
-	int		y;
-	int		max;
-
-	i = 0;
-	max = 0;
-	if (up)
-		y = 0;
-	else
-		y = size / 4 - 1;
-	while ((up && y < size / 4) || (!up && y >= 0))
-	{
-		if (values[y][x] > max)
-		{
-			max = values[y][x];
-			i++;
-		}
-		if (up)
-			y++;
-		else
-			y--;
-	}
-	return ('0' + i);
-}
-
-char	ft_cmpt_row(char **values, int size, int y, int left)
-{
-	char	i;
-	int		x;
-	int		max;
-
-	i = 0;
-	max = 0;
-	if (left)
-		x = 0;
-	else
-		x = size / 4 - 1;
-	while ((left && x < size / 4) || (!left && x >= 0))
-	{
-		if (values[y][x] > max)
-		{
-			max = values[y][x];
-			i++;
-		}
-		if (left)
-			x++;
-		else
-			x--;
-	}
-	return (i + '0');
 }
 
 int	ft_solve(char **values, char *args, int n, int size)
@@ -93,15 +44,17 @@ int	ft_solve(char **values, char *args, int n, int size)
 	char	c;
 	int		x;
 	int		y;
+	int		len;
 
+	len = size / 4;
 	c = '0';
-	x = n % (size / 4);
-	y = n / (size / 4);
-	if (n == size * size / 16)
+	x = n % len;
+	y = n / len;
+	if (n == len * len)
 		return (1);
 	if (values[y][x] != '0')
 		return (ft_solve(values, args, n + 1, size));
-	while (++c <= '0' + size / 4)
+	while (++c <= '0' + len)
 	{
 		values[y][x] = c;
 		if (ft_is_valid(values, args, (t_coords){x, y}, c))

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tab.c                                           :+:      :+:    :+:   */
+/*   ft_init_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:39:04 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/16 23:17:12 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:14:18 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,6 @@ char	**ft_init_tab(int size)
 	return (values);
 }
 
-void	ft_put_tab(char **values, int size)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < size / 4)
-	{
-		j = 0;
-		while (j < size / 4 - 1)
-		{
-			ft_putchar(values[i][j]);
-			ft_putchar(' ');
-			j++;
-		}
-		ft_putchar(values[i][j]);
-		ft_putchar('\n');
-		i++;
-	}
-}
-
 void	ft_destroy_tab(char **values, int size)
 {
 	int		i;
@@ -74,22 +53,24 @@ void	ft_fill_col(char **values, char *args, int size)
 {
 	int		x;
 	int		y;
+	int		len;
 
 	x = 0;
-	while (x < size / 4)
+	len = size / 4;
+	while (x < len)
 	{
 		y = 0;
-		if (ft_get_col(args, size, x, 1) == '0' + size / 4)
-			while (y++ < size / 4)
+		if (ft_col(args, size, x, 1) == '0' + len)
+			while (y++ < len)
 				values[y - 1][x] = '0' + y;
-		else if (ft_get_col(args, size, x, 1) == '1')
-			values[0][x] = '0' + size / 4;
-		y = size / 4 - 1;
-		if (ft_get_col(args, size, x, 0) == '0' + size / 4)
-            while (y-- < size / 4)
-                values[y + 1][x] = '0' + y;
-        else if (ft_get_col(args, size, x, 0) == '1')
-            values[y][x] = '0' + size / 4;
+		else if (ft_col(args, size, x, 1) == '1')
+			values[0][x] = '0' + len;
+		y = len - 1;
+		if (ft_col(args, size, x, 0) == '0' + len)
+			while (y-- < len)
+				values[y + 1][x] = '0' + y;
+		else if (ft_col(args, size, x, 0) == '1')
+			values[y][x] = '0' + len;
 		x++;
 	}
 }
@@ -98,22 +79,24 @@ void	ft_fill_row(char **values, char *args, int size)
 {
 	int		y;
 	int		x;
+	int		len;
 
 	y = 0;
-	while (y < size / 4)
+	len = size / 4;
+	while (y < len)
 	{
 		x = 0;
-		if (ft_get_row(args, size, y, 1) == '0' + size / 4)
-			while (x++ < size / 4)
+		if (ft_row(args, size, y, 1) == '0' + len)
+			while (x++ < len)
 				values[y][x - 1] = '0' + x;
-		else if (ft_get_row(args, size, y, 1) == '1')
-			values[y][0] = '0' + size / 4;
-		x = size / 4 - 1;
-		if (ft_get_row(args, size, y, 0) == '0' + size / 4)
-            while (x-- < size / 4)
-                values[y][x + 1] = '0' + x;
-        else if (ft_get_row(args, size, y, 0) == '1')
-            values[y][x] = '0' + size / 4;
+		else if (ft_row(args, size, y, 1) == '1')
+			values[y][0] = '0' + len;
+		x = len - 1;
+		if (ft_row(args, size, y, 0) == '0' + len)
+			while (x-- < len)
+				values[y][x + 1] = '0' + x;
+		else if (ft_row(args, size, y, 0) == '1')
+			values[y][x] = '0' + len;
 		y++;
 	}
 }

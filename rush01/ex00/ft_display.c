@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_io.c                                            :+:      :+:    :+:   */
+/*   ft_display.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 23:12:55 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/16 23:13:59 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:16:47 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,26 @@ void	ft_putstr(char *str)
 	while (str[i])
 		i++;
 	write(1, str, i);
+}
+
+// Affiche le tableau (execute par main a la fin du programme)
+void	ft_put_tab(char **values, int size)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < size / 4)
+	{
+		j = 0;
+		while (j < size / 4 - 1)
+		{
+			ft_putchar(values[i][j]);
+			ft_putchar(' ');
+			j++;
+		}
+		ft_putchar(values[i][j]);
+		ft_putchar('\n');
+		i++;
+	}
 }

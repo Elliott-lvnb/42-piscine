@@ -6,7 +6,7 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:15:30 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 00:10:55 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:21:21 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,22 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		size = ft_get_size(argv[1]);
-		if (size <= 0)
+		if (size > 0)
 		{
-			ft_putstr("Error\n");
-			return (0);
+			values = ft_init_tab(size);
+			if (values)
+			{
+				ft_fill_row(values, argv[1], size);
+				ft_fill_col(values, argv[1], size);
+				if (ft_solve(values, argv[1], 0, size))
+					ft_put_tab(values, size);
+				else
+					ft_putstr("Error\n");
+				ft_destroy_tab(values, size);
+				return (0);
+			}
 		}
-		values = ft_init_tab(size);
-		ft_fill_row(values, argv[1], size);
-		ft_fill_col(values, argv[1], size);
-		ft_solve(values, argv[1], 0, size);
-		ft_put_tab(values, size);
-		ft_destroy_tab(values, size);
 	}
+	ft_putstr("Error\n");
 	return (0);
 }
