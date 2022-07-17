@@ -6,7 +6,7 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:42:33 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 13:44:14 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 14:23:30 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ int	ft_is_valid_input(char *str, int size)
 		clue[2] = ft_row(str, size, i, 1);
 		clue[3] = ft_row(str, size, i, 0);
 		if (clue[0] + clue[1] - '0' > '1' + len
-			|| clue[0] + clue[1] - '0' < '3')
+			|| clue[0] + clue[1] - '0' < '2')
 			return (0);
 		if (clue[2] + clue[3] - '0' > '1' + len
-			|| clue[2] + clue[3] - '0' < '3')
+			|| clue[2] + clue[3] - '0' < '2')
 			return (0);
 		i++;
 	}

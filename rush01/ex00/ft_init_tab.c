@@ -6,7 +6,7 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:39:04 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/17 13:45:32 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/17 14:30:15 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_fill_col(char **values, char *args, int size)
 			values[0][x] = '0' + len;
 		y = len - 1;
 		if (ft_col(args, size, x, 0) == '0' + len)
-			while (y-- < len)
+			while (y-- > 0)
 				values[y + 1][x] = '0' + y;
 		else if (ft_col(args, size, x, 0) == '1')
 			values[y][x] = '0' + len;
@@ -109,7 +109,7 @@ void	ft_fill_row(char **values, char *args, int size)
 			values[y][0] = '0' + len;
 		x = len - 1;
 		if (ft_row(args, size, y, 0) == '0' + len)
-			while (x-- < len)
+			while (x-- > 0)
 				values[y][x + 1] = '0' + x;
 		else if (ft_row(args, size, y, 0) == '1')
 			values[y][x] = '0' + len;
