@@ -6,7 +6,7 @@
 /*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 12:49:40 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/18 13:15:31 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/18 19:48:26 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,19 @@ int	ft_atoi_base(char *str, char *base, int b_size)
 	return ((int) n);
 }
 
+int 	ft_nb_len(int n, int b_size)
+{
+	int				len;
+
+	len = 1;
+	while (n / b_size > 0)
+	{
+		n /= b_size;
+		len++;
+	}
+	return (len);
+}
+
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
 	char			*nb_str;
@@ -82,16 +95,14 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	int				i;
 
 	k = ft_base_size(base_from);
-	size = ft_base_size(base_to)
+	size = ft_base_size(base_to);
 	if (!(k && size))
 		return (NULL);
-	k = ft_atoi_base(nbr, base_from, isize);
+	k = ft_atoi_base(nbr, base_from, k);
 	n = k < 0 ? -k : k;
-	// Trouver longueur de k
-	int len;
-	nb_str = (char *) malloc((len + 1) * sizeof(char));
-	nb_str[len] = '\0';
-	i = len;
+	i = ft_nb_len(n, size) + (k < 0 ? 1 : 0);
+	nb_str = (char *) malloc((i + 1) * sizeof(char));
+	nb_str[i] = '\0';
 	while (i-- > 0)
 	{
 		nb_str[i] = base_to[n % size];
