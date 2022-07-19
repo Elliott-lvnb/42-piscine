@@ -6,7 +6,7 @@
 /*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 00:33:37 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/15 00:44:22 by eloevenb         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:15:08 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strdup(char *src)
 	while (src[size])
 		size++;
 	dup = (char *) malloc((size + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
 	i = 0;
 	while (i <= size)
 	{
