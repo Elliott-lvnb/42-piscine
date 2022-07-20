@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 19:06:12 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/19 19:07:12 by eloevenb         ###   ########.fr       */
+/*   Created: 2022/07/20 22:42:48 by eloevenb          #+#    #+#             */
+/*   Updated: 2022/07/20 22:43:46 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *str1, char *str2)
 {
-	while (*s1 && *s1 == *s2)
+	while (*str1 && *str1 == *str2)
 	{
-		s1++;
-		s2++;
+		str1++;
+		str2++;
 	}
-	return (*s1 - *s2);
+	return (*str1 - *str2);
 }

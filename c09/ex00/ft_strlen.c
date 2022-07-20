@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eloevenb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eloevenb <eloevenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 19:05:37 by eloevenb          #+#    #+#             */
-/*   Updated: 2022/07/19 19:06:05 by eloevenb         ###   ########.fr       */
+/*   Created: 2022/07/20 22:42:00 by eloevenb          #+#    #+#             */
+/*   Updated: 2022/07/20 22:42:37 by eloevenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strlen(char *str)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
